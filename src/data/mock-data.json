@@ -1,0 +1,51 @@
+[
+  {
+    "id": "1",
+    "fullName": "John Doe",
+    "address": "123 Main St",
+    "phoneNumber": "555-1234",
+    "email": "john@example.com"
+  },
+  {
+    "id": "2",
+    "fullName": "Jane Smith",
+    "address": "456 Oak St",
+    "phoneNumber": "555-5678",
+    "email": "jane@example.com"
+  },
+  {
+    "id": "3",
+    "fullName": "Bob Johnson",
+    "address": "789 Elm St",
+    "phoneNumber": "555-9876",
+    "email": "bob@example.com"
+  },
+  {
+    "id": "4",
+    "fullName": "Alice Brown",
+    "address": "321 Pine St",
+    "phoneNumber": "555-4321",
+    "email": "alice@example.com"
+  },
+  {
+    "id": "5",
+    "fullName": "Charlie Wilson",
+    "address": "654 Cedar St",
+    "phoneNumber": "555-8765",
+    "email": "charlie@example.com"
+  },
+  {
+    "id": "6",
+    "fullName": "Eva Miller",
+    "address": "987 Maple St",
+    "phoneNumber": "555-3456",
+    "email": "eva@example.com"
+  },
+  {
+    "id": "7",
+    "fullName": "David White",
+    "address": "246 Birch St",
+    "phoneNumber": "555-7890",
+    "email": "david@example.com"
+  }
+]
