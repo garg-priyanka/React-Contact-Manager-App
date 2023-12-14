@@ -17,27 +17,28 @@ import data from '../data/mock-data.json';
 const AppContainer = () => {
   // State hooks for managing contacts and form data
   const [contacts, setContacts] = useState(data)
-  const [formData, setFormData] = useState({
+  const [addFormData, setAddFormData] = useState({
     fullName: "",
     address: "",
     phoneNumber: "",
     email: "",
   })
+
   const [editContactId, setEditContactId] = useState(null)
 
   // Handle Contactform input change
-  const handleFormChange = (event) => {
+  const handleContactFormChange = (event) => {
     const { name, value } = event.target
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+    setAddFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
   }
 
   // Handle input form change for EditableRow
   const handleEditableRowFormChange = (event, contactId) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     if (contactId === editContactId) {
-      setEditableRowData((prevData) => ({ ...prevData, [name]: value }));
+      setEditableRowData((prevData) => ({ ...prevData, [name]: value }))
     }
-  };
+  }
 
   // Handle form submission (Add/Edit)
   const handleFormSubmit = (event) => {
@@ -46,16 +47,17 @@ const AppContainer = () => {
 
     if (editContactId !== null) {
       const updatedContacts = contacts.map((contact) =>
-        contact.id === editContactId ? { ...contact, ...editableRowData } : contact
+        contact.id === editContactId
+          ? { ...contact, ...editableRowData }
+          : contact
       )
       setContacts(updatedContacts)
-      
     } else {
-      const newContact = { id: nanoid(), ...formData }
+      const newContact = { id: nanoid(), ...addFormData }
       setContacts((prevContacts) => [...prevContacts, newContact])
     }
 
-    setFormData({
+    setAddFormData({
       fullName: "",
       address: "",
       phoneNumber: "",
@@ -99,14 +101,14 @@ const AppContainer = () => {
   }
 
   // Headers for the Table component
-  const tableHeaders = Object.keys(formData)
+  const tableHeaders = Object.keys(addFormData)
 
   // Return JSX for rendering the AppContainer component
   return (
     <div className="app-container">
       <ContactForm
-        formData={formData}
-        onFormChange={handleFormChange}
+        formData={addFormData}
+        onFormChange={handleContactFormChange}
         onFormSubmit={handleFormSubmit}
       />
 
