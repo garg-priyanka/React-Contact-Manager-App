@@ -4,21 +4,14 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-// EditableRow component for rendering editable rows in the table
-const EditableRow = ({ contact, onFormChange, onCancelClick }) => {
-  // Check if contact is undefined to avoid rendering errors
-  if (!contact) {
-    // Render null or some placeholder content when contact is undefined
-    return null
-  }
-
+const EditableRow = ({ contact, editableRowData, onFormChange, onCancelClick }) => {
   return (
     <tr>
       <td>
         <input
           type="text"
           name="fullName"
-          value={contact.fullName}
+          value={editableRowData.fullName}
           onChange={(e) => onFormChange(e, contact.id)}
           placeholder="Enter full name..."
         />
@@ -27,7 +20,7 @@ const EditableRow = ({ contact, onFormChange, onCancelClick }) => {
         <input
           type="text"
           name="address"
-          value={contact.address}
+          value={editableRowData.address}
           onChange={(e) => onFormChange(e, contact.id)}
           placeholder="Enter address..."
         />
@@ -36,7 +29,7 @@ const EditableRow = ({ contact, onFormChange, onCancelClick }) => {
         <input
           type="text"
           name="phoneNumber"
-          value={contact.phoneNumber}
+          value={editableRowData.phoneNumber}
           onChange={(e) => onFormChange(e, contact.id)}
           placeholder="Enter phone number..."
         />
@@ -45,7 +38,7 @@ const EditableRow = ({ contact, onFormChange, onCancelClick }) => {
         <input
           type="email"
           name="email"
-          value={contact.email}
+          value={editableRowData.email}
           onChange={(e) => onFormChange(e, contact.id)}
           placeholder="Enter email..."
         />
@@ -54,10 +47,9 @@ const EditableRow = ({ contact, onFormChange, onCancelClick }) => {
         <button onClick={onCancelClick}>Cancel</button>
       </td>
     </tr>
-  )
-}
+  );
+};
 
-// Prop types for the EditableRow component
 EditableRow.propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string.isRequired,
@@ -66,8 +58,14 @@ EditableRow.propTypes = {
     phoneNumber: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
   }),
+  editableRowData: PropTypes.shape({
+    fullName: PropTypes.string,
+    address: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    email: PropTypes.string,
+  }),
   onFormChange: PropTypes.func.isRequired,
   onCancelClick: PropTypes.func.isRequired,
-}
+};
 
-export default EditableRow
+export default EditableRow;

@@ -25,11 +25,19 @@ const AppContainer = () => {
   })
   const [editContactId, setEditContactId] = useState(null)
 
-  // Handle form input change
+  // Handle Contactform input change
   const handleFormChange = (event) => {
     const { name, value } = event.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
   }
+
+  // Handle input form change for EditableRow
+  const handleEditableRowFormChange = (event, contactId) => {
+    const { name, value } = event.target;
+    if (contactId === editContactId) {
+      setEditableRowData((prevData) => ({ ...prevData, [name]: value }));
+    }
+  };
 
   // Handle form submission (Add/Edit)
   const handleFormSubmit = (event) => {
@@ -54,14 +62,19 @@ const AppContainer = () => {
     })
   }
 
+  // this state is specifically for EditableRow data
+  const [editableRowData, setEditableRowData] = useState({
+    fullName: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+  })
+
   // Handle edit button click
   const handleEditClick = (contact) => {
+    // Set editableRowData to a copy of the clicked contact
+    setEditableRowData({ ...contact })
     setEditContactId(contact.id)
-
-    // Only set formData when the edit form is displayed
-    if (editContactId === null) {
-      setFormData(contact)
-    }
   }
 
   // Handle cancel button click
@@ -110,13 +123,18 @@ const AppContainer = () => {
         <tbody>
           {contacts.map((contact) => (
             <Fragment key={contact.id}>
-              {editContactId === contact.id ? (
-                <EditableRow
-                  contact={contact}
-                  onFormChange={handleFormChange}
-                  onCancelClick={handleCancelClick}
-                />
-              ) : (
+              {editContactId === contact.id && (
+                // conditionally render either ReadOnlyRow or EditableRow
+                <>
+                  <EditableRow
+                    contact={contact}
+                    editableRowData={editableRowData}
+                    onFormChange={handleEditableRowFormChange}
+                    onCancelClick={handleCancelClick}
+                  />
+                </>
+              )}
+              {editContactId !== contact.id && (
                 <ReadOnlyRow
                   contact={contact}
                   onEditClick={() => handleEditClick(contact)}
