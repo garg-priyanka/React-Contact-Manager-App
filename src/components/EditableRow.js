@@ -4,7 +4,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-const EditableRow = ({ contact, editableRowData, onFormChange, onCancelClick }) => {
+const EditableRow = ({ contact, editableRowData, onFormChange, onCancelClick, onSaveClick }) => {
   return (
     <tr>
       <td>
@@ -45,6 +45,7 @@ const EditableRow = ({ contact, editableRowData, onFormChange, onCancelClick }) 
       </td>
       <td>
         <button onClick={onCancelClick}>Cancel</button>
+        <button onClick={onSaveClick}>Save</button>
       </td>
     </tr>
   );

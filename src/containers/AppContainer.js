@@ -41,14 +41,15 @@ const AppContainer = () => {
 
   // Handle form submission (Add/Edit)
   const handleFormSubmit = (event) => {
+    console.log("here", editContactId)
     event.preventDefault()
 
     if (editContactId !== null) {
       const updatedContacts = contacts.map((contact) =>
-        contact.id === editContactId ? { ...contact, ...formData } : contact
+        contact.id === editContactId ? { ...contact, ...editableRowData } : contact
       )
       setContacts(updatedContacts)
-      setEditContactId(null)
+      
     } else {
       const newContact = { id: nanoid(), ...formData }
       setContacts((prevContacts) => [...prevContacts, newContact])
@@ -60,6 +61,7 @@ const AppContainer = () => {
       phoneNumber: "",
       email: "",
     })
+    setEditContactId(null)
   }
 
   // this state is specifically for EditableRow data
@@ -131,6 +133,7 @@ const AppContainer = () => {
                     editableRowData={editableRowData}
                     onFormChange={handleEditableRowFormChange}
                     onCancelClick={handleCancelClick}
+                    onSaveClick={handleFormSubmit}
                   />
                 </>
               )}
