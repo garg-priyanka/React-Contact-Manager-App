@@ -4,14 +4,15 @@
 
 This is a React practice application for managing contacts. It allows users to add, edit, and delete contact information. The application features a user-friendly interface with forms for adding and editing contact details.
 
-
 ## Usage
 
 1. **Add a Contact:**
+
    - Enter the contact details in the input fields under the "Add a Contact" section.
    - Click the "Add" button to save the new contact.
 
 2. **Edit a Contact:**
+
    - Click the "Edit" button next to the contact you want to modify.
    - Update the contact details in the editable form.
    - Click the "Save" button to apply the changes or "Cancel" to discard them.
